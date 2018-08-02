@@ -38,6 +38,7 @@
                         <group name="exit" string="Sortie">
                             <group>
                                 <field name="sell_date"/>
+                                <field name="buyer_id"/>
                                 <field name="matriculation_change"/>
                                 <field name="warranty"/>
                             </group>

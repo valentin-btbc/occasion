@@ -1,0 +1,144 @@
+<odoo>
+    <data>
+        <record id="paperformat_report_occasion" model="report.paperformat">
+            <field name="name">report_occasion</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">279</field>
+            <field name="page_width">840</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">1</field>
+            <field name="margin_bottom">1</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">1</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">200</field>
+        </record>
+
+        <report id="report_occasion_product" string="Imprimer Report occasion" model="product.template" report_type="qweb-pdf" name="occasion.report_occasion_menu" file="occasion.report_occasion_menu" paperformat="occasion.paperformat_report_occasion" />
+
+        <template id="report_occasion_menu">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Numéro d'ordre</th>
+                                <th rowspan="2">Date de l'achat du dépot ou de l'apport à l'échange</th>
+                                <th rowspan="2">Nom, Prénom ou dénomination social du vendeur, du déposant ou l'apporteur à l'échange. Qualité ou profession. Domicile ou siège social</th>
+                                <th rowspan="2">Nature et numéro de la pièce d'identité présentée. Indication de l'autorité qui l'a délivrée et date de la délivrance.</th>
+                                <th colspan="6">Description précise du véhicule automobile</th>
+                                <th rowspan="2">Km Compteur.</th>
+                                <th colspan="2">Paiement</th>
+                                <th rowspan="2">Date de la vente</th>
+                                <th rowspan="2">Acheteur</th>
+                                <th rowspan="2">Changement d'immatriculation</th>
+                                <th rowspan="2">Garantie</th>
+                                <th colspan="2">Description précise du véhicule automobile</th>
+                                <th rowspan="2">Commissions Frais divers</th>
+                                <th colspan="2">Paiement</th>
+                            </tr>
+                            <tr>
+                                <th>Genre</th>
+                                <th>Marque</th>
+                                <th>Type</th>
+                                <th>N°Immatriculation(1)</th>
+                                <th>Année</th>
+                                <th>N° dans la série type (G)</th>
+                                <th>Prix d'achat (ou valeur vénale)</th>
+                                <th>Mode de réglement</th>
+                                <th>Pièces et access.</th>
+                                <th>Main-d'oeuvre</th>
+                                <th>Prix de vente</th>
+                                <th>Mode de réglement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="template">
+                                <t t-call="occasion.report_occasion">
+                                    <t t-set="product_list" t-value="template.product_variant_ids"/>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_occasion">
+            <div>
+                <t t-foreach="product_list" t-as="product">
+                    <tr>
+                        <td>
+                            <span t-field="product.order_nb"/>
+                        </td>
+                        <td>
+                            <span t-field="product.purchase_date"/>
+                        </td>
+                        <td>
+                            <span t-field="product.seller"/>
+                        </td>
+                        <td>
+                            <span t-field="product.id_piece"/>
+                        </td>
+                        <td>
+                            <span t-field="product.genre"/>
+                        </td>
+                        <td>
+                            <span t-field="product.brand_id"/>
+                        </td>
+                        <td>
+                            <span t-field="product.modele_id"/>
+                        </td>
+                        <td>
+                            <span t-field="product.matriculation"/>
+                        </td>
+                        <td>
+                            <span t-field="product.year"/>
+                        </td>
+                        <td>
+                            <span t-field="product.serial_nb"/>
+                        </td>
+                        <td>
+                            <span t-field="product.km_counter"/>
+                        </td>
+                        <td>
+                            <span t-field="product.purchase_price"/>
+                        </td>
+                        <td>
+                            <span t-field="product.purchase_payment_type"/>
+                        </td>
+                        <td>
+                            <span t-field="product.sell_date"/>
+                        </td>
+                        <td>
+                            <span t-field="product.buyer_id"/>
+                        </td>
+                        <td>
+                            <span t-field="product.matriculation_change"/>
+                        </td>
+                        <td>
+                            <span t-field="product.warranty"/>
+                        </td>
+                        <td>
+                            <span t-field="product.pieces_accessories"/>
+                        </td>
+                        <td>
+                            <span t-field="product.manpower"/>
+                        </td>
+                        <td>
+                            <span t-field="product.commission"/>
+                        </td>
+                        <td>
+                            <span t-field="product.sell_price"/>
+                        </td>
+                        <td>
+                            <span t-field="product.sell_payment_type"/>
+                        </td>
+                    </tr>
+                </t>
+            </div>
+        </template>
+    </data>
+</odoo>

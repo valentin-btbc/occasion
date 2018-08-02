@@ -19,6 +19,7 @@ class ProductTemplate(models.Model):
     purchase_price = fields.Float(string="Prix d'achat")
     purchase_payment_type = fields.Char(string="Mode de réglement")
     sell_date = fields.Date(string="Date de vente")
+    buyer_id = fields.Many2one('res.partner', string="Acheteur")
     matriculation_change = fields.Char(string="Changement d'immatriculation")
     warranty = fields.Char(string="Garantie")
     pieces_accessories = fields.Char(string="Pièces et accessoires")
