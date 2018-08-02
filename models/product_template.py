@@ -12,8 +12,6 @@ class ProductTemplate(models.Model):
     seller = fields.Char(string="Vendeur")
     id_piece = fields.Char(string="Pièce d'identité")
     genre = fields.Char(string="Genre")
-    brand_id = fields.Many2one('brand_model.marque', string="Marque")
-    model_id = fields.Many2one('brand_model.modele', string="Modèle")
     matriculation = fields.Char(string="Immatriculation")
     year = fields.Char(string="Année")
     serial_nb = fields.Char(string="Numéro de série")

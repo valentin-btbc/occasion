@@ -23,8 +23,6 @@
                             </group>
                             <group name="description_car" string="Description précise du véhicule">
                                 <field name="genre"/>
-                                <field name="brand_id"/>
-                                <field name="model_id"/>
                                 <field name="matriculation"/>
                                 <field name="year"/>
                                 <field name="serial_nb"/>
