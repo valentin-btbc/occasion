@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <!-- product.template inherit form view -->
+        <record id="view_id" model="ir.ui.view">
+            <field name="name">product.template.inherit.view.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="sale_ok" position="before">
+                    <div>
+                        <field name="is_occasion" />
+                        <label for="is_occasion"/>
+                    </div>
+                </field>
+                <page name="notes" position="after">
+                    <page string="Occasion" name="occasion" attrs="{'invisible':[('is_occasion','!=',True)]}">
+                        <group name="entrance" string="Entrée">
+                            <group>
+                                <field name="order_nb"/>
+                                <field name="purchase_date"/>
+                                <field name="seller"/>
+                                <field name="id_piece"/>
+                            </group>
+                            <group name="description_car" string="Description précise du véhicule">
+                                <field name="genre"/>
+                                <field name="brand_id"/>
+                                <field name="model_id"/>
+                                <field name="matriculation"/>
+                                <field name="year"/>
+                                <field name="serial_nb"/>
+                            </group>
+                            <group>
+                                <field name="km_counter"/>
+                            </group>
+                            <group name="payment" string="Paiement">
+                                <field name="purchase_price"/>
+                                <field name="purchase_payment_type"/>
+                            </group>
+                        </group>
+                        <group name="exit" string="Sortie">
+                            <group>
+                                <field name="sell_date"/>
+                                <field name="matriculation_change"/>
+                                <field name="warranty"/>
+                            </group>
+                            <group name="Repair" string="Remise en état">
+                                <field name="pieces_accessories"/>
+                                <field name="manpower"/>
+                            </group>
+                            <group>
+                                <field name="commission"/>
+                            </group>
+                            <group name="payment" string="Paiement">
+                                <field name="sell_price"/>
+                                <field name="sell_payment_type"/>
+                            </group>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>
